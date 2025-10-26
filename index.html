@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema PDV - VIDA SAUDAVEL</title>
@@ -411,14 +410,96 @@
         border-color: #4caf50;
         box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
       }
-    </style>
-    <script type="text/javascript" src="./index.js" defer=""></script>
-    <link rel="stylesheet" href="./index.css">
-    <script type="text/javascript" src="./index.js" defer=""></script>
-    <link rel="stylesheet" href="./index.css">
-  </head>
 
-  <body>
+      .cash-management-card {
+        margin-bottom: 1rem;
+      }
+
+      .cash-management-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      .cash-management-buttons .btn {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+      }
+
+      .cash-status {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #e8f5e9;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+
+      .cash-status.closed {
+        background-color: #ffebee;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .modal.hidden {
+        display: none;
+      }
+
+      .modal-content {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333;
+      }
+
+      #searchInput {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.125rem;
+        background-color: #f5f5f5;
+        border: 1px solid #e0e0e0;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+      }
+
+      #searchResults .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+</head>
+<body>
     <div id="authSection">
       <h3>Login / Cadastro</h3>
       <input type="email" id="email" placeholder="Email">
@@ -472,8 +553,20 @@
             <button class="btn btn-outline" id="btn-pix">PIX</button>
             <button class="btn btn-outline" id="btn-credito">Crédito</button>
             <button class="btn btn-outline" id="btn-debito">Débito</button>
+            <button class="btn btn-outline" id="btn-vale-troca">Vale Troca</button>
           </div>
-          <input type="text" id="payment-amount" placeholder="Valor" inputmode="decimal">
+         <input type="text" id="payment-amount" placeholder="Valor" inputmode="decimal">
+
+<style>
+#payment-amount {
+  width: 250px;   /* largura */
+  height: 50px;   /* altura */
+  font-size: 18px; /* tamanho do texto */
+  padding: 8px;    /* espaço interno */
+  border-radius: 10px; /* cantos arredondados */
+}
+</style>
+
           <div class="payment-actions">
             <button class="btn btn-primary" id="confirm-payment-btn" style="flex: 1;">Confirmar</button>
             <button class="btn btn-outline" id="cancel-payment-btn">Cancelar</button>
@@ -482,6 +575,16 @@
         <div class="card">
           <button class="btn btn-outline" id="total-discount-btn">Desconto Total (F6)</button>
           <button class="btn btn-outline" id="total-addition-btn">Acréscimo Total (F7)</button>
+        </div>
+        <div id="cash-management-card" class="card cash-management-card">
+          <h3>Gerenciamento de Caixa</h3>
+          <div class="cash-management-buttons">
+            <button class="btn btn-outline" id="open-cash-btn">Abrir Caixa</button>
+            <button class="btn btn-outline" id="sangria-btn">Sangria</button>
+            <button class="btn btn-outline" id="suprimento-btn">Suprimento</button>
+            <button class="btn btn-outline" id="close-cash-btn">Fechar Caixa</button>
+          </div>
+          <div id="cash-status" class="cash-status hidden"></div>
         </div>
         <button id="finalize-btn" class="btn btn-primary finalize-btn hidden" onclick="showPaymentForm()">
           Finalizar Venda (F5)
@@ -495,6 +598,7 @@
           <div class="shortcut-item"><strong>F5:</strong> Finalizar venda</div>
           <div class="shortcut-item"><strong>F6:</strong> Desconto total</div>
           <div class="shortcut-item"><strong>F7:</strong> Acréscimo total</div>
+          <div class="shortcut-item"><strong>F8:</strong> Buscar produto</div>
           <div class="shortcut-item"><strong>↑↓:</strong> Navegar itens</div>
           <div class="shortcut-item"><strong>Enter:</strong> Confirmar</div>
           <div class="shortcut-item"><strong>Esc:</strong> Cancelar</div>
@@ -502,6 +606,23 @@
       </div>
     </div>
     <div id="toast" class="toast"></div>
+    <div id="searchModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Pesquisar Produto</h3>
+          <button class="close-modal" id="closeSearchBtn">×</button>
+        </div>
+        <input type="text" id="searchInput" placeholder="Digite o nome do produto">
+        <div id="searchResults"></div>
+      </div>
+    </div>
+    <div id="changeModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Troco</h3>
+        <div id="changeAmount" style="font-size: 3rem; text-align: center; color: #4caf50;"></div>
+        <button class="btn btn-primary" id="closeChangeBtn">OK (Enter)</button>
+      </div>
+    </div>
     <script type="module">
       import {
         initializeApp
@@ -544,6 +665,18 @@
       let tempWeight = null;
       let totalDiscount = 0;
       let totalAddition = 0;
+      let cashOpened = false;
+      let dailySalesByPayment = {
+        Pix: 0,
+        Dinheiro: 0,
+        Credito: 0,
+        Debito: 0,
+        ValeTroca: 0,
+        Outro: 0
+      };
+      let initialCash = 0;
+      let cashOperations = [];
+      let currentVoucherCode = null;
       const authSection = document.getElementById('authSection');
       const header = document.getElementById('header');
       const mainContainer = document.getElementById('main-container');
@@ -551,8 +684,10 @@
       const clockDisplayEl = document.getElementById('clock-display');
       const dateDisplayEl = document.getElementById('date-display');
       const waitingScreenEl = document.getElementById('waiting-screen');
+      const waitingMessageEl = waitingScreenEl.querySelector('.waiting-message');
       const cartAreaEl = document.getElementById('cart-area');
       const barcodeInputEl = document.getElementById('barcode-input');
+      const inputAreaEl = document.querySelector('.input-area');
       const totalAmountEl = document.getElementById('total-amount');
       const paymentInfoEl = document.getElementById('payment-info');
       const totalPaidEl = document.getElementById('total-paid');
@@ -575,6 +710,22 @@
       const registerBtn = document.getElementById('registerBtn');
       const loginBtn = document.getElementById('loginBtn');
       const logoutBtn = document.getElementById('logoutBtn');
+      const openCashBtn = document.getElementById('open-cash-btn');
+      const sangriaBtn = document.getElementById('sangria-btn');
+      const suprimentoBtn = document.getElementById('suprimento-btn');
+      const closeCashBtn = document.getElementById('close-cash-btn');
+      const cashStatusEl = document.getElementById('cash-status');
+      const cashManagementCard = document.getElementById('cash-management-card');
+      const searchModal = document.getElementById('searchModal');
+      const searchInput = document.getElementById('searchInput');
+      const closeSearchBtn = document.getElementById('closeSearchBtn');
+      const changeModal = document.getElementById('changeModal');
+      const changeAmountEl = document.getElementById('changeAmount');
+      const closeChangeBtn = document.getElementById('closeChangeBtn');
+
+      window.addProduct = addProduct;
+      window.showPaymentForm = showPaymentForm;
+      window.selectProduct = selectProduct;
 
       function updateTime() {
         const now = new Date();
@@ -622,6 +773,80 @@
           });
         }
       }
+
+      function loadCashData() {
+        const user = auth.currentUser;
+        if (user) {
+          const today = new Date().toISOString().split('T')[0];
+          const cashRef = ref(db, `cash/${user.uid}/${today}`);
+          onValue(cashRef, snapshot => {
+            if (snapshot.exists()) {
+              const data = snapshot.val();
+              cashOpened = data.finalCash === undefined;
+              initialCash = data.initial || 0;
+              cashOperations = data.operations || [];
+              dailySalesByPayment = data.salesByPayment || {
+                Pix: 0,
+                Dinheiro: 0,
+                Credito: 0,
+                Debito: 0,
+                ValeTroca: 0,
+                Outro: 0
+              };
+              updateCashButtons();
+            } else {
+              cashOpened = false;
+              initialCash = 0;
+              cashOperations = [];
+              dailySalesByPayment = {
+                Pix: 0,
+                Dinheiro: 0,
+                Credito: 0,
+                Debito: 0,
+                ValeTroca: 0,
+                Outro: 0
+              };
+              updateCashButtons();
+            }
+          });
+        }
+      }
+
+      function updatePOSAvailability() {
+        if (cashOpened) {
+          inputAreaEl.classList.remove('hidden');
+          waitingMessageEl.textContent = 'Aguardando código de barras...';
+          totalDiscountBtn.disabled = false;
+          totalAdditionBtn.disabled = false;
+          barcodeInputEl.disabled = false;
+        } else {
+          inputAreaEl.classList.add('hidden');
+          waitingMessageEl.textContent = 'Caixa fechado. Abra o caixa para iniciar vendas.';
+          totalDiscountBtn.disabled = true;
+          totalAdditionBtn.disabled = true;
+          barcodeInputEl.disabled = true;
+          if (cart.length > 0) {
+            cancelSale();
+          }
+        }
+      }
+
+      function updateCashButtons() {
+        openCashBtn.disabled = cashOpened;
+        sangriaBtn.disabled = !cashOpened;
+        suprimentoBtn.disabled = !cashOpened;
+        closeCashBtn.disabled = !cashOpened;
+        if (cashOpened) {
+          cashStatusEl.classList.remove('closed');
+          cashStatusEl.textContent = `Caixa aberto.`;
+        } else {
+          cashStatusEl.classList.add('closed');
+          cashStatusEl.textContent = 'Caixa fechado.';
+        }
+        cashStatusEl.classList.remove('hidden');
+        updatePOSAvailability();
+      }
+
       async function findProduct(barcode) {
         if (productsDatabase[barcode]) {
           return {
@@ -635,7 +860,12 @@
         }
         return null;
       }
+
       async function addProductToCart(input) {
+        if (!cashOpened) {
+          showToast('Caixa não aberto. Abra o caixa para iniciar vendas.', 'error');
+          return;
+        }
         let product;
         let quantity = 1;
         let price;
@@ -745,7 +975,7 @@
               subtotal: product.price * quantity,
               discount: 0
             });
-            selectedCartIndex = cart.length - 1; // Seleciona o novo item
+            selectedCartIndex = cart.length - 1;
           }
         }
         showToast(`${product.name} - R$ ${(product.price * quantity).toFixed(2)}`, 'success');
@@ -760,6 +990,109 @@
           barcodeInputEl.value = '';
           barcodeInputEl.focus();
         }
+      }
+
+      function showSearchModal() {
+        if (!cashOpened) {
+          showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
+          return;
+        }
+        searchModal.classList.remove('hidden');
+        searchInput.value = '';
+        displaySearchResults('');
+        searchInput.focus();
+      }
+
+      function hideSearchModal() {
+        searchModal.classList.add('hidden');
+        barcodeInputEl.focus();
+      }
+
+      function displaySearchResults(query) {
+        const resultsEl = document.getElementById('searchResults');
+        resultsEl.innerHTML = '';
+        const products = Object.entries(productsDatabase).map(([id, prod]) => ({
+          id,
+          ...prod
+        }));
+        const filtered = products.filter(prod => prod.nome.toLowerCase().includes(query.toLowerCase()));
+        if (filtered.length === 0) {
+          resultsEl.innerHTML = '<p>Nenhum produto encontrado.</p>';
+        }
+        filtered.forEach(prod => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="cart-item-info">
+              <h3>${prod.nome}</h3>
+              <div class="cart-item-details">
+                Código: ${prod.id} | Unitário: R$ ${prod.preco.toFixed(2)} | Unidade: ${prod.unidade} | Estoque: ${prod.estoque || 0}
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="selectProduct('${prod.id}', '${prod.unidade}')">Selecionar</button>
+          `;
+          resultsEl.appendChild(itemEl);
+        });
+      }
+
+      function selectProduct(code, unit) {
+        if (!cashOpened) {
+          showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
+          return;
+        }
+        hideSearchModal();
+        let quantity = 1;
+        if (unit === 'kilo') {
+          const weightStr = prompt('Digite a gramatura em gramas (ex: 150):');
+          if (!weightStr) return;
+          const weight = parseFloat(weightStr);
+          if (isNaN(weight) || weight <= 0) {
+            showToast('Gramatura inválida.', 'error');
+            return;
+          }
+          quantity = weight / 1000;
+        } else {
+          const qtyStr = prompt('Digite a quantidade (ex: 2):', '1');
+          if (!qtyStr) return;
+          quantity = parseFloat(qtyStr);
+          if (isNaN(quantity) || quantity <= 0) {
+            showToast('Quantidade inválida.', 'error');
+            return;
+          }
+        }
+        const prodData = productsDatabase[code];
+        if (!prodData) {
+          showToast('Produto não encontrado.', 'error');
+          return;
+        }
+        const product = {
+          id: code,
+          barcode: code,
+          name: prodData.nome,
+          price: prodData.preco,
+          unit: unit
+        };
+        const price = product.price * quantity;
+        let added = false;
+        if (unit !== 'kilo') {
+          const existingIndex = cart.findIndex(item => item.product.id === code);
+          if (existingIndex >= 0) {
+            cart[existingIndex].quantity += quantity;
+            cart[existingIndex].subtotal += price;
+            added = true;
+          }
+        }
+        if (!added) {
+          cart.push({
+            product,
+            quantity,
+            subtotal: price,
+            discount: 0
+          });
+        }
+        selectedCartIndex = cart.length - 1;
+        showToast(`${product.name} adicionado à venda.`, 'success');
+        updateDisplay();
       }
 
       function updateDisplay() {
@@ -870,6 +1203,10 @@
       }
 
       function showPaymentForm() {
+        if (!cashOpened) {
+          showToast('Caixa não aberto. Abra o caixa para iniciar vendas.', 'error');
+          return;
+        }
         if (cart.length > 0) {
           paymentFormEl.classList.remove('hidden');
           finalizeBtn.classList.add('hidden');
@@ -882,12 +1219,15 @@
 
       function selectPaymentType(type) {
         selectedPaymentType = type;
-        ['dinheiro', 'pix', 'credito', 'debito'].forEach(t => {
+        const types = ['dinheiro', 'pix', 'credito', 'debito', 'vale-troca'];
+        types.forEach(t => {
           const btn = document.getElementById(`btn-${t}`);
-          btn.className = t === type ? 'btn btn-primary' : 'btn btn-outline';
+          if (btn) btn.className = t === type ? 'btn btn-primary' : 'btn btn-outline';
         });
+        paymentAmountEl.readOnly = (type === 'vale-troca');
         paymentAmountEl.focus();
       }
+
       async function addPayment() {
         let amountStr = paymentAmountEl.value.trim();
         amountStr = amountStr.replace(',', '.');
@@ -903,10 +1243,15 @@
           showToast('Para pagamentos não em dinheiro, o valor não pode exceder o restante.', 'error');
           return;
         }
-        payments.push({
+        const payment = {
           type: selectedPaymentType.charAt(0).toUpperCase() + selectedPaymentType.slice(1).toLowerCase(),
           amount: amount
-        });
+        };
+        if (selectedPaymentType === 'vale-troca' && currentVoucherCode) {
+          payment.voucherCode = currentVoucherCode;
+          currentVoucherCode = null;
+        }
+        payments.push(payment);
         const newRemaining = getRemaining();
         if (amount < remaining) {
           showToast(`Pagamento de R$ ${amount.toFixed(2)} adicionado. Restante: R$ ${newRemaining.toFixed(2)}`, 'success');
@@ -961,7 +1306,12 @@
                   set(newSaleRef, saleData),
                   update(ref(db), updates)
                 ]);
-                // Update cash sales by payment to appear in the second PDV report
+                for (const payment of payments) {
+                  if (payment.voucherCode) {
+                    const voucherRef = ref(db, `valesTroca/${user.uid}/${payment.voucherCode}`);
+                    await update(voucherRef, { used: true, usedDate: new Date().toISOString() });
+                  }
+                }
                 const today = new Date().toISOString().split('T')[0];
                 const cashRef = ref(db, `cash/${user.uid}/${today}`);
                 const cashSnapshot = await get(cashRef);
@@ -971,9 +1321,9 @@
                   Dinheiro: 0,
                   Credito: 0,
                   Debito: 0,
+                  ValeTroca: 0,
                   Outro: 0
                 };
-                // FIX: Apportion each payment correctly, and adjust for change on cash
                 payments.forEach(p => {
                   const paymentTypeKey = p.type;
                   salesByPayment[paymentTypeKey] = (salesByPayment[paymentTypeKey] || 0) + p.amount;
@@ -984,8 +1334,12 @@
                 cashData.salesByPayment = salesByPayment;
                 await update(cashRef, cashData);
                 printSaleReceipt(saleData, amount);
-                showToast(`Venda finalizada! Total: R$ ${subtotal.toFixed(2)} - Troco: R$ ${change > 0 ? change.toFixed(2) : '0.00'}`, 'success');
-                cancelSale();
+                showToast(`Venda finalizada! Total: R$ ${subtotal.toFixed(2)}`, 'success');
+                if (change > 0) {
+                  showChangeModal(change);
+                } else {
+                  cancelSale();
+                }
               });
             } catch (error) {
               showToast(`Erro ao finalizar venda: ${error.message}`, 'error');
@@ -1092,6 +1446,7 @@
         tempWeight = null;
         totalDiscount = 0;
         totalAddition = 0;
+        currentVoucherCode = null;
         barcodeInputEl.placeholder = "Código de barras, gramatura (ex: 150 *) ou código do produto";
         updateDisplay();
         showToast('Venda cancelada', 'warning');
@@ -1270,6 +1625,7 @@
             passwordInput.value = '';
             setTimeout(() => {
               loadProductsFromDatabase();
+              loadCashData();
               barcodeInputEl.focus();
             }, 500);
           })
@@ -1284,9 +1640,236 @@
             console.error('Erro no login:', err);
           });
       }
+
+      function openCash() {
+        const name = prompt('Nome do operador que abre o caixa:');
+        if (!name) return;
+        const initialStr = prompt('Suprimento inicial (R$):');
+        const initial = parseFloat(initialStr.replace(',', '.'));
+        if (isNaN(initial) || initial < 0) {
+          showToast('Valor inicial inválido.', 'error');
+          return;
+        }
+        const today = new Date().toISOString().split('T')[0];
+        const cashRef = ref(db, `cash/${auth.currentUser.uid}/${today}`);
+        set(cashRef, {
+          openerName: name,
+          initial: initial,
+          openingTimestamp: new Date().toLocaleString('pt-BR'),
+          operations: [],
+          salesByPayment: {
+            Pix: 0,
+            Dinheiro: 0,
+            Credito: 0,
+            Debito: 0,
+            ValeTroca: 0,
+            Outro: 0
+          }
+        }).then(() => {
+          showToast('Caixa aberto com sucesso!', 'success');
+          printCashOperation('Abertura de Caixa', initial, name, 'Inicial');
+        }).catch(err => showToast(`Erro ao abrir caixa: ${err.message}`, 'error'));
+      }
+
+      function registerSangria() {
+        if (!cashOpened) {
+          showToast('Caixa não aberto.', 'error');
+          return;
+        }
+        const amountStr = prompt('Valor da sangria (R$):');
+        const amount = parseFloat(amountStr.replace(',', '.'));
+        if (isNaN(amount) || amount <= 0) {
+          showToast('Valor inválido.', 'error');
+          return;
+        }
+        const note = prompt('Observação (opcional):') || '';
+        const operation = {
+          type: 'sangria',
+          amount: -amount,
+          note: note,
+          timestamp: new Date().toLocaleString('pt-BR')
+        };
+        cashOperations.push(operation);
+        saveCashOperations();
+        showToast('Sangria registrada!', 'success');
+        printCashOperation('Sangria', amount, '', note);
+      }
+
+      function registerSuprimento() {
+        if (!cashOpened) {
+          showToast('Caixa não aberto.', 'error');
+          return;
+        }
+        const amountStr = prompt('Valor do suprimento (R$):');
+        const amount = parseFloat(amountStr.replace(',', '.'));
+        if (isNaN(amount) || amount <= 0) {
+          showToast('Valor inválido.', 'error');
+          return;
+        }
+        const note = prompt('Observação (opcional):') || '';
+        const operation = {
+          type: 'suprimento',
+          amount: amount,
+          note: note,
+          timestamp: new Date().toLocaleString('pt-BR')
+        };
+        cashOperations.push(operation);
+        saveCashOperations();
+        showToast('Suprimento registrado!', 'success');
+        printCashOperation('Suprimento', amount, '', note);
+      }
+
+      async function closeCash() {
+        if (!cashOpened) {
+          showToast('Caixa não aberto.', 'error');
+          return;
+        }
+        const name = prompt('Nome do operador que fecha o caixa:');
+        if (!name) return;
+        const finalCountStr = prompt('Contagem final de dinheiro (R$):');
+        const finalCount = parseFloat(finalCountStr.replace(',', '.'));
+        if (isNaN(finalCount) || finalCount < 0) {
+          showToast('Valor inválido.', 'error');
+          return;
+        }
+        let totalCashOperations = cashOperations.reduce((sum, op) => sum + op.amount, 0);
+        let expectedCash = initialCash + dailySalesByPayment.Dinheiro + totalCashOperations;
+        let difference = finalCount - expectedCash;
+        const confirmMsg = `Caixa esperado: R$ ${expectedCash.toFixed(2)}\nContagem final: R$ ${finalCount.toFixed(2)}\nDiferença: R$ ${difference.toFixed(2)}\nConfirmar fechamento?`;
+        if (confirm(confirmMsg)) {
+          const today = new Date().toISOString().split('T')[0];
+          const cashRef = ref(db, `cash/${auth.currentUser.uid}/${today}`);
+          update(cashRef, {
+            finalCash: finalCount,
+            difference: difference,
+            closerName: name,
+            closingTimestamp: new Date().toLocaleString('pt-BR')
+          }).then(() => {
+            showToast('Caixa fechado com sucesso!', 'success');
+            printClosingReport(expectedCash, finalCount, difference, name);
+          }).catch(err => showToast(`Erro ao fechar caixa: ${err.message}`, 'error'));
+        }
+      }
+
+      function saveCashOperations() {
+        const user = auth.currentUser;
+        if (user) {
+          const today = new Date().toISOString().split('T')[0];
+          const cashRef = ref(db, `cash/${user.uid}/${today}`);
+          update(cashRef, {
+            operations: cashOperations,
+            salesByPayment: dailySalesByPayment
+          });
+        }
+      }
+
+      function printCashOperation(type, amount, name, note) {
+        const {
+          jsPDF
+        } = window.jspdf;
+        const doc = new jsPDF();
+        const shopName = "VIDA SAUDAVEL";
+        const dateTime = new Date().toLocaleString('pt-BR');
+        let yPos = 10;
+        const margin = 10;
+        const lineHeight = 7;
+        doc.setFontSize(14);
+        doc.text(shopName, doc.internal.pageSize.getWidth() / 2, yPos, {
+          align: 'center'
+        });
+        yPos += lineHeight;
+        doc.setFontSize(12);
+        doc.text(type, doc.internal.pageSize.getWidth() / 2, yPos, {
+          align: 'center'
+        });
+        yPos += lineHeight;
+        doc.setFontSize(10);
+        doc.text(`Data: ${dateTime}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text("-----------------------------------------", margin, yPos);
+        yPos += lineHeight;
+        doc.text(`Valor: R$ ${amount.toFixed(2).replace('.', ',')}`, margin, yPos);
+        yPos += lineHeight;
+        if (name) doc.text(`Operador: ${name}`, margin, yPos);
+        yPos += lineHeight;
+        if (note) doc.text(`Observação: ${note}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text("-----------------------------------------", margin, yPos);
+        doc.save(`${type.toLowerCase()}_${new Date().getTime()}.pdf`);
+      }
+
+      function printClosingReport(expected, final, diff, name) {
+        const {
+          jsPDF
+        } = window.jspdf;
+        const doc = new jsPDF();
+        const shopName = "VIDA SAUDAVEL";
+        const dateTime = new Date().toLocaleString('pt-BR');
+        let yPos = 10;
+        const margin = 10;
+        const lineHeight = 7;
+        doc.setFontSize(14);
+        doc.text(shopName, doc.internal.pageSize.getWidth() / 2, yPos, {
+          align: 'center'
+        });
+        yPos += lineHeight;
+        doc.setFontSize(12);
+        doc.text('Fechamento de Caixa', doc.internal.pageSize.getWidth() / 2, yPos, {
+          align: 'center'
+        });
+        yPos += lineHeight;
+        doc.setFontSize(10);
+        doc.text(`Data: ${dateTime}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text("-----------------------------------------", margin, yPos);
+        yPos += lineHeight;
+        doc.text(`Caixa esperado: R$ ${expected.toFixed(2).replace('.', ',')}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text(`Contagem final: R$ ${final.toFixed(2).replace('.', ',')}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text(`Diferença: R$ ${diff.toFixed(2).replace('.', ',')}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text(`Fechado por: ${name}`, margin, yPos);
+        yPos += lineHeight;
+        doc.text("-----------------------------------------", margin, yPos);
+        doc.save(`fechamento_caixa_${new Date().getTime()}.pdf`);
+      }
+
+      function showChangeModal(change) {
+        changeAmountEl.textContent = `R$ ${change.toFixed(2)}`;
+        changeModal.classList.remove('hidden');
+      }
+
+      function closeChangeModal() {
+        changeModal.classList.add('hidden');
+        cancelSale();
+      }
+
       ['dinheiro', 'pix', 'credito', 'debito'].forEach(type => {
         const btn = document.getElementById(`btn-${type}`);
         btn.addEventListener('click', () => selectPaymentType(type));
+      });
+      document.getElementById('btn-vale-troca').addEventListener('click', async () => {
+        const code = prompt('Digite o código do vale troca:');
+        if (!code) return;
+        try {
+          const voucherRef = ref(db, `valesTroca/${auth.currentUser.uid}/${code.trim()}`);
+          const snapshot = await get(voucherRef);
+          if (!snapshot.exists()) {
+            showToast('Código inválido.', 'error');
+            return;
+          }
+          const voucher = snapshot.val();
+          if (voucher.used) {
+            showToast('Vale troca já utilizado.', 'error');
+            return;
+          }
+          currentVoucherCode = code.trim();
+          paymentAmountEl.value = voucher.value.toFixed(2);
+          selectPaymentType('vale-troca');
+        } catch (err) {
+          showToast('Erro ao verificar vale troca.', 'error');
+        }
       });
       confirmPaymentBtn.addEventListener('click', addPayment);
       cancelPaymentBtn.addEventListener('click', cancelPayment);
@@ -1300,6 +1883,25 @@
           emailInput.focus();
         });
       });
+      openCashBtn.addEventListener('click', openCash);
+      sangriaBtn.addEventListener('click', registerSangria);
+      suprimentoBtn.addEventListener('click', registerSuprimento);
+      closeCashBtn.addEventListener('click', closeCash);
+      closeSearchBtn.addEventListener('click', hideSearchModal);
+      searchInput.addEventListener('keyup', (e) => {
+        displaySearchResults(e.target.value);
+      });
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) {
+          hideSearchModal();
+        }
+      });
+      closeChangeBtn.addEventListener('click', closeChangeModal);
+      changeModal.addEventListener('click', (e) => {
+        if (e.target === changeModal) {
+          closeChangeModal();
+        }
+      });
       onAuthStateChanged(auth, user => {
         console.log('Estado de autenticação:', user ? `Usuário logado: ${user.uid}` : 'Nenhum usuário logado');
         if (user) {
@@ -1307,8 +1909,9 @@
           header.classList.remove('hidden');
           mainContainer.classList.remove('hidden');
           loadProductsFromDatabase();
+          loadCashData();
           updateTime();
-          barcodeInputEl.focus();
+          setTimeout(() => barcodeInputEl.focus(), 1000);
         } else {
           authSection.classList.remove('hidden');
           header.classList.add('hidden');
@@ -1318,11 +1921,17 @@
           productsDatabase = {};
           totalDiscount = 0;
           totalAddition = 0;
+          cashOpened = false;
           updateDisplay();
           emailInput.focus();
         }
       });
       document.addEventListener('keydown', function(e) {
+        if (!cashOpened && ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8'].includes(e.key)) {
+          e.preventDefault();
+          showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
+          return;
+        }
         if (e.key === 'F1') {
           e.preventDefault();
           cancelSale();
@@ -1351,6 +1960,10 @@
           e.preventDefault();
           applyTotalAddition();
         }
+        if (e.key === 'F8') {
+          e.preventDefault();
+          showSearchModal();
+        }
         if (e.key === 'ArrowUp') {
           e.preventDefault();
           selectedCartIndex = Math.max(0, selectedCartIndex - 1);
@@ -1371,12 +1984,19 @@
           } else if (document.activeElement === emailInput || document.activeElement === passwordInput) {
             e.preventDefault();
             loginUser();
+          } else if (!changeModal.classList.contains('hidden')) {
+            e.preventDefault();
+            closeChangeModal();
           }
         }
         if (e.key === 'Escape') {
           e.preventDefault();
           if (!paymentFormEl.classList.contains('hidden')) {
             cancelPayment();
+          } else if (!searchModal.classList.contains('hidden')) {
+            hideSearchModal();
+          } else if (!changeModal.classList.contains('hidden')) {
+            closeChangeModal();
           }
         }
       });
@@ -1392,15 +2012,14 @@
         if (document.activeElement !== paymentAmountEl &&
           document.activeElement !== emailInput &&
           document.activeElement !== passwordInput &&
+          document.activeElement !== searchInput &&
           paymentFormEl.classList.contains('hidden') &&
+          searchModal.classList.contains('hidden') &&
+          changeModal.classList.contains('hidden') &&
           auth.currentUser) {
           barcodeInputEl.focus();
         }
       }, 100);
     </script>
-
-
-
-  </body>
-
+</body>
 </html>
