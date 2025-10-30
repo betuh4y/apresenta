@@ -13,7 +13,6 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background-color: #ffffff;
@@ -21,7 +20,6 @@
         height: 100vh;
         overflow: hidden;
       }
-
       .header {
         background-color: #2e7d32;
         color: #ffffff;
@@ -30,22 +28,18 @@
         justify-content: space-between;
         align-items: center;
       }
-
       .header h1 {
         font-size: 1.5rem;
         font-weight: bold;
       }
-
       .header .time {
         font-size: 1.25rem;
         font-family: 'Courier New', monospace;
       }
-
       .main-container {
         display: flex;
         height: calc(100vh - 80px);
       }
-
       .main-area {
         flex: 1;
         padding: 1.5rem;
@@ -53,7 +47,6 @@
         display: flex;
         flex-direction: column;
       }
-
       .waiting-screen {
         flex: 1;
         display: flex;
@@ -61,31 +54,26 @@
         justify-content: center;
         text-align: center;
       }
-
       .clock-display {
         font-size: 5rem;
         font-family: 'Courier New', monospace;
         color: #4caf50;
         margin-bottom: 2rem;
       }
-
       .date-display {
         font-size: 1.5rem;
         color: #333333;
         margin-bottom: 1rem;
       }
-
       .waiting-message {
         font-size: 1.25rem;
         color: #333333;
       }
-
       .cart-area {
         flex: 1;
         overflow-y: auto;
         margin-bottom: 1rem;
       }
-
       .cart-item {
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
@@ -96,39 +84,32 @@
         justify-content: space-between;
         align-items: center;
       }
-
       .cart-item.selected {
         background-color: #e8f5e9;
         border-color: #4caf50;
       }
-
       .cart-item-info h3 {
         font-size: 1.125rem;
         font-weight: 600;
         margin-bottom: 0.25rem;
       }
-
       .cart-item-details {
         font-size: 0.875rem;
         color: #333333;
       }
-
       .cart-item-price {
         font-size: 1.5rem;
         font-weight: bold;
       }
-
       .discount-info {
         font-size: 0.875rem;
         color: #ff9800;
       }
-
       .input-area {
         display: flex;
         gap: 0.5rem;
         margin-top: 1rem;
       }
-
       .input-area input {
         flex: 1;
         padding: 0.75rem;
@@ -138,12 +119,10 @@
         border-radius: 0.375rem;
         color: #000000;
       }
-
       .input-area input:focus {
         outline: none;
         border-color: #4caf50;
       }
-
       .btn {
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
@@ -153,36 +132,29 @@
         cursor: pointer;
         transition: all 0.2s;
       }
-
       .btn-primary {
         background-color: #4caf50;
         color: #ffffff;
       }
-
       .btn-primary:hover {
         background-color: #388e3c;
       }
-
       .btn-secondary {
         background-color: #f5f5f5;
         color: #000000;
         border: 1px solid #e0e0e0;
       }
-
       .btn-secondary:hover {
         background-color: #e0e0e0;
       }
-
       .btn-outline {
         background-color: transparent;
         color: #000000;
         border: 1px solid #e0e0e0;
       }
-
       .btn-outline:hover {
         background-color: #f5f5f5;
       }
-
       .sidebar {
         width: 24rem;
         background-color: #f5f5f5;
@@ -191,7 +163,6 @@
         display: flex;
         flex-direction: column;
       }
-
       .card {
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
@@ -199,118 +170,95 @@
         padding: 1.5rem;
         margin-bottom: 1.5rem;
       }
-
       .total-display {
         text-align: center;
       }
-
       .total-label {
         font-size: 0.875rem;
         color: #333333;
         margin-bottom: 0.5rem;
       }
-
       .total-amount {
         font-size: 3rem;
         font-weight: bold;
         color: #4caf50;
       }
-
       .payment-info {
         margin-top: 1rem;
       }
-
       .payment-info .paid {
         font-size: 1rem;
         color: #333333;
       }
-
       .payment-info .remaining {
         font-size: 1.5rem;
         font-weight: 600;
         color: #ff9800;
       }
-
       .total-modifiers {
         font-size: 1rem;
         margin-top: 0.5rem;
       }
-
       .total-modifiers .discount {
         color: #f44336;
       }
-
       .total-modifiers .addition {
         color: #4caf50;
       }
-
       .payments-list {
         margin-bottom: 1rem;
       }
-
       .payments-list h3 {
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
-
       .payment-item {
         display: flex;
         justify-content: space-between;
         font-size: 0.875rem;
         margin-bottom: 0.25rem;
       }
-
       .payment-form {
         margin-bottom: 1rem;
       }
-
       .payment-form h3 {
         font-weight: 600;
         margin-bottom: 1rem;
       }
-
       .payment-buttons {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
         margin-bottom: 1rem;
       }
-
       .payment-buttons .btn {
         text-transform: capitalize;
         padding: 0.5rem;
       }
-
       .payment-actions {
         display: flex;
         gap: 0.5rem;
       }
-
       .finalize-btn {
         width: 100%;
         font-size: 1.125rem;
         padding: 1rem;
         margin-bottom: 1rem;
       }
-
       .shortcuts {
         font-size: 0.75rem;
       }
-
       .shortcuts h3 {
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
-
       .shortcut-item {
         margin-bottom: 0.25rem;
       }
-
       .shortcut-item strong {
         display: inline-block;
         width: 2.5rem;
       }
-
       .toast {
         position: fixed;
         top: 1rem;
@@ -324,27 +272,21 @@
         transform: translateX(100%);
         transition: transform 0.3s ease;
       }
-
       .toast.show {
         transform: translateX(0);
       }
-
       .toast.success {
         border-color: #4caf50;
       }
-
       .toast.error {
         border-color: #f44336;
       }
-
       .toast.warning {
         border-color: #ffca28;
       }
-
       .hidden {
         display: none;
       }
-
       #authSection {
         display: flex;
         flex-direction: column;
@@ -353,12 +295,10 @@
         height: 100vh;
         background-color: #f4f4f4;
       }
-
       #authSection h3 {
         color: #333333;
         margin-bottom: 20px;
       }
-
       #authSection input {
         width: 300px;
         padding: 10px;
@@ -368,7 +308,6 @@
         font-size: 1rem;
         color: #000000;
       }
-
       #authSection button {
         background-color: #4caf50;
         color: #ffffff;
@@ -378,11 +317,9 @@
         cursor: pointer;
         margin: 5px;
       }
-
       #authSection button:hover {
         background-color: #388e3c;
       }
-
       .payment-form input#payment-amount {
         width: 100%;
         height: 120px;
@@ -398,34 +335,35 @@
         box-sizing: border-box;
         -moz-appearance: textfield;
       }
-
       .payment-form input#payment-amount::-webkit-outer-spin-button,
       .payment-form input#payment-amount::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
-
       .payment-form input#payment-amount:focus {
         outline: none;
         border-color: #4caf50;
         box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
       }
-
+      #payment-amount {
+        width: 250px; /* largura */
+        height: 50px; /* altura */
+        font-size: 18px; /* tamanho do texto */
+        padding: 8px; /* espaço interno */
+        border-radius: 10px; /* cantos arredondados */
+      }
       .cash-management-card {
         margin-bottom: 1rem;
       }
-
       .cash-management-buttons {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
       }
-
       .cash-management-buttons .btn {
         padding: 0.75rem;
         font-size: 0.875rem;
       }
-
       .cash-status {
         margin-top: 1rem;
         padding: 1rem;
@@ -433,11 +371,9 @@
         border-radius: 0.5rem;
         text-align: center;
       }
-
       .cash-status.closed {
         background-color: #ffebee;
       }
-
       .modal {
         position: fixed;
         top: 0;
@@ -450,11 +386,9 @@
         justify-content: center;
         z-index: 999;
       }
-
       .modal.hidden {
         display: none;
       }
-
       .modal-content {
         background: #ffffff;
         border: 1px solid #e0e0e0;
@@ -466,14 +400,12 @@
         overflow-y: auto;
         position: relative;
       }
-
       .modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1rem;
       }
-
       .close-modal {
         background: none;
         border: none;
@@ -481,7 +413,6 @@
         cursor: pointer;
         color: #333;
       }
-
       #searchInput {
         width: 100%;
         padding: 0.75rem;
@@ -491,11 +422,46 @@
         border-radius: 0.375rem;
         margin-bottom: 1rem;
       }
-
       #searchResults .cart-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+      /* Nova seção de filtro de vendas */
+      #sales-section {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+      }
+      .filters {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f0f8ff;
+      }
+      .filters label {
+        margin-right: 10px;
+        font-weight: bold;
+      }
+      .filters input,
+      .filters select,
+      .filters button {
+        margin-right: 10px;
+        margin-bottom: 5px;
+      }
+      .total-sales {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #007bff;
+        margin-top: 15px;
+        text-align: right;
+      }
+      #saleList div {
+        border: 1px solid #eee;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
       }
     </style>
 </head>
@@ -522,6 +488,29 @@
           </div>
         </div>
         <div id="cart-area" class="cart-area hidden"></div>
+        <div id="sales-section" class="hidden">
+          <div class="filters">
+            <label for="filterDateStart">De:</label>
+            <input type="date" id="filterDateStart">
+            <label for="filterDateEnd">Até:</label>
+            <input type="date" id="filterDateEnd">
+            <label for="filterPaymentType">Tipo de Pagamento:</label>
+            <select id="filterPaymentType">
+              <option value="Todos">Todos</option>
+              <option value="Pix">Pix</option>
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Credito">Crédito</option>
+              <option value="Debito">Débito</option>
+              <option value="Outro">Outro</option>
+              <option value="ValeTroca">Vale Troca</option>
+            </select>
+            <button class="btn btn-primary" onclick="applyFiltersAndDisplaySales()">Aplicar Filtros</button>
+          </div>
+          <div class="total-sales">
+            Total Geral de Vendas (Visível): <span id="totalSalesValue">R$ 0,00</span>
+          </div>
+          <div id="saleList"></div>
+        </div>
         <div class="input-area">
           <input type="text" id="barcode-input" placeholder="Código de barras, gramatura (ex: 150 *) ou código do produto" autofocus="">
           <button class="btn btn-primary" onclick="addProduct()">Adicionar Item</button>
@@ -556,17 +545,15 @@
             <button class="btn btn-outline" id="btn-vale-troca">Vale Troca</button>
           </div>
          <input type="text" id="payment-amount" placeholder="Valor" inputmode="decimal">
-
 <style>
 #payment-amount {
-  width: 250px;   /* largura */
-  height: 50px;   /* altura */
+  width: 250px; /* largura */
+  height: 50px; /* altura */
   font-size: 18px; /* tamanho do texto */
-  padding: 8px;    /* espaço interno */
+  padding: 8px; /* espaço interno */
   border-radius: 10px; /* cantos arredondados */
 }
 </style>
-
           <div class="payment-actions">
             <button class="btn btn-primary" id="confirm-payment-btn" style="flex: 1;">Confirmar</button>
             <button class="btn btn-outline" id="cancel-payment-btn">Cancelar</button>
@@ -589,6 +576,7 @@
         <button id="finalize-btn" class="btn btn-primary finalize-btn hidden" onclick="showPaymentForm()">
           Finalizar Venda (F5)
         </button>
+        <button id="view-sales-btn" class="btn btn-outline">Ver Vendas (F9)</button>
         <div class="card shortcuts">
           <h3>Teclas de Atalho</h3>
           <div class="shortcut-item"><strong>F1:</strong> Cancelar venda</div>
@@ -599,6 +587,7 @@
           <div class="shortcut-item"><strong>F6:</strong> Desconto total</div>
           <div class="shortcut-item"><strong>F7:</strong> Acréscimo total</div>
           <div class="shortcut-item"><strong>F8:</strong> Buscar produto</div>
+          <div class="shortcut-item"><strong>F9:</strong> Ver vendas</div>
           <div class="shortcut-item"><strong>↑↓:</strong> Navegar itens</div>
           <div class="shortcut-item"><strong>Enter:</strong> Confirmar</div>
           <div class="shortcut-item"><strong>Esc:</strong> Cancelar</div>
@@ -612,7 +601,7 @@
           <h3>Pesquisar Produto</h3>
           <button class="close-modal" id="closeSearchBtn">×</button>
         </div>
-        <input type="text" id="searchInput" placeholder="Digite o nome do produto">
+        <input type="text" id="searchInput" placeholder="Digite o nome do produto ou código">
         <div id="searchResults"></div>
       </div>
     </div>
@@ -642,7 +631,8 @@
         onValue,
         push,
         get,
-        runTransaction
+        runTransaction,
+        remove
       } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
       const firebaseConfig = {
         apiKey: "AIzaSyDJBdK9I-jtg9ujTc9Xsxr-hnPfkId4wIU",
@@ -677,6 +667,8 @@
       let initialCash = 0;
       let cashOperations = [];
       let currentVoucherCode = null;
+      let allSalesData = [];
+      let filteredSalesData = [];
       const authSection = document.getElementById('authSection');
       const header = document.getElementById('header');
       const mainContainer = document.getElementById('main-container');
@@ -722,11 +714,11 @@
       const changeModal = document.getElementById('changeModal');
       const changeAmountEl = document.getElementById('changeAmount');
       const closeChangeBtn = document.getElementById('closeChangeBtn');
-
+      const viewSalesBtn = document.getElementById('view-sales-btn');
+      const salesSection = document.getElementById('sales-section');
       window.addProduct = addProduct;
       window.showPaymentForm = showPaymentForm;
       window.selectProduct = selectProduct;
-
       function updateTime() {
         const now = new Date();
         const timeStr = now.toLocaleString('pt-BR', {
@@ -751,7 +743,6 @@
         clockDisplayEl.textContent = timeOnly;
         dateDisplayEl.textContent = dateOnly;
       }
-
       function showToast(message, type = 'success') {
         toastEl.textContent = message;
         toastEl.className = `toast ${type}`;
@@ -760,7 +751,6 @@
           toastEl.classList.remove('show');
         }, 3000);
       }
-
       function loadProductsFromDatabase() {
         const user = auth.currentUser;
         if (user) {
@@ -773,7 +763,6 @@
           });
         }
       }
-
       function loadCashData() {
         const user = auth.currentUser;
         if (user) {
@@ -811,7 +800,6 @@
           });
         }
       }
-
       function updatePOSAvailability() {
         if (cashOpened) {
           inputAreaEl.classList.remove('hidden');
@@ -830,7 +818,6 @@
           }
         }
       }
-
       function updateCashButtons() {
         openCashBtn.disabled = cashOpened;
         sangriaBtn.disabled = !cashOpened;
@@ -846,7 +833,6 @@
         cashStatusEl.classList.remove('hidden');
         updatePOSAvailability();
       }
-
       async function findProduct(barcode) {
         if (productsDatabase[barcode]) {
           return {
@@ -860,7 +846,6 @@
         }
         return null;
       }
-
       async function addProductToCart(input) {
         if (!cashOpened) {
           showToast('Caixa não aberto. Abra o caixa para iniciar vendas.', 'error');
@@ -982,7 +967,6 @@
         barcodeInputEl.placeholder = "Código de barras, gramatura (ex: 150 *) ou código do produto";
         updateDisplay();
       }
-
       function addProduct() {
         const input = barcodeInputEl.value.trim();
         if (input) {
@@ -991,7 +975,6 @@
           barcodeInputEl.focus();
         }
       }
-
       function showSearchModal() {
         if (!cashOpened) {
           showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
@@ -1002,12 +985,10 @@
         displaySearchResults('');
         searchInput.focus();
       }
-
       function hideSearchModal() {
         searchModal.classList.add('hidden');
         barcodeInputEl.focus();
       }
-
       function displaySearchResults(query) {
         const resultsEl = document.getElementById('searchResults');
         resultsEl.innerHTML = '';
@@ -1015,7 +996,7 @@
           id,
           ...prod
         }));
-        const filtered = products.filter(prod => prod.nome.toLowerCase().includes(query.toLowerCase()));
+        const filtered = products.filter(prod => prod.nome.toLowerCase().includes(query.toLowerCase()) || prod.id.toString().includes(query));
         if (filtered.length === 0) {
           resultsEl.innerHTML = '<p>Nenhum produto encontrado.</p>';
         }
@@ -1034,7 +1015,6 @@
           resultsEl.appendChild(itemEl);
         });
       }
-
       function selectProduct(code, unit) {
         if (!cashOpened) {
           showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
@@ -1094,7 +1074,6 @@
         showToast(`${product.name} adicionado à venda.`, 'success');
         updateDisplay();
       }
-
       function updateDisplay() {
         if (cart.length === 0) {
           waitingScreenEl.classList.remove('hidden');
@@ -1115,7 +1094,6 @@
         }
         updateTotals();
       }
-
       function updateCart() {
         cartAreaEl.innerHTML = '';
         cart.forEach((item, index) => {
@@ -1149,23 +1127,18 @@
           }
         }
       }
-
       function getBaseSubtotal() {
         return cart.reduce((sum, item) => sum + item.subtotal - item.discount, 0);
       }
-
       function getSubtotal() {
         return parseFloat((getBaseSubtotal() - totalDiscount + totalAddition).toFixed(2));
       }
-
       function getTotalPaid() {
         return parseFloat(payments.reduce((sum, payment) => sum + parseFloat(payment.amount), 0).toFixed(2));
       }
-
       function getRemaining() {
         return parseFloat((getSubtotal() - getTotalPaid()).toFixed(2));
       }
-
       function updateTotals() {
         const subtotal = getSubtotal();
         const totalPaid = getTotalPaid();
@@ -1187,7 +1160,6 @@
           paymentInfoEl.style.display = 'none';
         }
       }
-
       function updatePaymentsList() {
         paymentsCardEl.classList.toggle('hidden', payments.length === 0);
         paymentsListEl.innerHTML = '';
@@ -1201,7 +1173,6 @@
           paymentsListEl.appendChild(paymentEl);
         });
       }
-
       function showPaymentForm() {
         if (!cashOpened) {
           showToast('Caixa não aberto. Abra o caixa para iniciar vendas.', 'error');
@@ -1216,7 +1187,6 @@
           paymentAmountEl.focus();
         }
       }
-
       function selectPaymentType(type) {
         selectedPaymentType = type;
         const types = ['dinheiro', 'pix', 'credito', 'debito', 'vale-troca'];
@@ -1227,7 +1197,6 @@
         paymentAmountEl.readOnly = (type === 'vale-troca');
         paymentAmountEl.focus();
       }
-
       async function addPayment() {
         let amountStr = paymentAmountEl.value.trim();
         amountStr = amountStr.replace(',', '.');
@@ -1352,7 +1321,6 @@
           }
         }
       }
-
       function printSaleReceipt(sale, amountGiven) {
         const {
           jsPDF
@@ -1428,7 +1396,6 @@
         });
         doc.save(`venda_${new Date(sale.dataVenda).getTime()}.pdf`);
       }
-
       function cancelPayment() {
         paymentFormEl.classList.add('hidden');
         if (cart.length > 0) {
@@ -1438,7 +1405,6 @@
         selectPaymentType('dinheiro');
         barcodeInputEl.focus();
       }
-
       function cancelSale() {
         cart = [];
         payments = [];
@@ -1452,7 +1418,6 @@
         showToast('Venda cancelada', 'warning');
         barcodeInputEl.focus();
       }
-
       function removeItem() {
         if (cart.length > 0 && selectedCartIndex < cart.length) {
           cart.splice(selectedCartIndex, 1);
@@ -1461,7 +1426,6 @@
           showToast('Item removido', 'warning');
         }
       }
-
       function applyDiscount() {
         if (cart.length > 0 && selectedCartIndex < cart.length) {
           const input = prompt('Digite o desconto no item (ex: 10 para R$10 ou 10% para 10%):');
@@ -1489,7 +1453,6 @@
           }
         }
       }
-
       function applyAddition() {
         if (cart.length > 0 && selectedCartIndex < cart.length) {
           const input = prompt('Digite o acréscimo no item (ex: 10 para R$10 ou 10% para 10%):');
@@ -1517,7 +1480,6 @@
           }
         }
       }
-
       function applyTotalDiscount() {
         if (cart.length > 0) {
           const input = prompt('Digite o desconto total (ex: 10 para R$10 ou 10% para 10%):');
@@ -1548,7 +1510,6 @@
           }
         }
       }
-
       function applyTotalAddition() {
         if (cart.length > 0) {
           const input = prompt('Digite o acréscimo total (ex: 10 para R$10 ou 10% para 10%):');
@@ -1579,7 +1540,6 @@
           }
         }
       }
-
       function registerUser() {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
@@ -1609,7 +1569,6 @@
             console.error('Erro no registro:', err);
           });
       }
-
       function loginUser() {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
@@ -1640,7 +1599,6 @@
             console.error('Erro no login:', err);
           });
       }
-
       function openCash() {
         const name = prompt('Nome do operador que abre o caixa:');
         if (!name) return;
@@ -1670,7 +1628,6 @@
           printCashOperation('Abertura de Caixa', initial, name, 'Inicial');
         }).catch(err => showToast(`Erro ao abrir caixa: ${err.message}`, 'error'));
       }
-
       function registerSangria() {
         if (!cashOpened) {
           showToast('Caixa não aberto.', 'error');
@@ -1694,7 +1651,6 @@
         showToast('Sangria registrada!', 'success');
         printCashOperation('Sangria', amount, '', note);
       }
-
       function registerSuprimento() {
         if (!cashOpened) {
           showToast('Caixa não aberto.', 'error');
@@ -1718,7 +1674,6 @@
         showToast('Suprimento registrado!', 'success');
         printCashOperation('Suprimento', amount, '', note);
       }
-
       async function closeCash() {
         if (!cashOpened) {
           showToast('Caixa não aberto.', 'error');
@@ -1750,7 +1705,6 @@
           }).catch(err => showToast(`Erro ao fechar caixa: ${err.message}`, 'error'));
         }
       }
-
       function saveCashOperations() {
         const user = auth.currentUser;
         if (user) {
@@ -1762,7 +1716,6 @@
           });
         }
       }
-
       function printCashOperation(type, amount, name, note) {
         const {
           jsPDF
@@ -1797,7 +1750,6 @@
         doc.text("-----------------------------------------", margin, yPos);
         doc.save(`${type.toLowerCase()}_${new Date().getTime()}.pdf`);
       }
-
       function printClosingReport(expected, final, diff, name) {
         const {
           jsPDF
@@ -1834,17 +1786,14 @@
         doc.text("-----------------------------------------", margin, yPos);
         doc.save(`fechamento_caixa_${new Date().getTime()}.pdf`);
       }
-
       function showChangeModal(change) {
         changeAmountEl.textContent = `R$ ${change.toFixed(2)}`;
         changeModal.classList.remove('hidden');
       }
-
       function closeChangeModal() {
         changeModal.classList.add('hidden');
         cancelSale();
       }
-
       ['dinheiro', 'pix', 'credito', 'debito'].forEach(type => {
         const btn = document.getElementById(`btn-${type}`);
         btn.addEventListener('click', () => selectPaymentType(type));
@@ -1902,6 +1851,124 @@
           closeChangeModal();
         }
       });
+      viewSalesBtn.addEventListener('click', showSalesSection);
+      function showSalesSection() {
+        cartAreaEl.classList.add('hidden');
+        inputAreaEl.classList.add('hidden');
+        salesSection.classList.remove('hidden');
+        waitingScreenEl.classList.add('hidden');
+        loadAllSalesAndFilter();
+      }
+      function hideSalesSection() {
+        salesSection.classList.add('hidden');
+        cartAreaEl.classList.remove('hidden');
+        inputAreaEl.classList.remove('hidden');
+        if (cart.length === 0) {
+          waitingScreenEl.classList.remove('hidden');
+        }
+        barcodeInputEl.focus();
+      }
+      function loadAllSalesAndFilter() {
+        const user = auth.currentUser;
+        if (user) {
+          const vendasRef = ref(db, `vendas/${user.uid}`);
+          onValue(vendasRef, snapshot => {
+            allSalesData = [];
+            if (snapshot.exists()) {
+              const data = snapshot.val();
+              Object.entries(data).forEach(([key, item]) => {
+                allSalesData.push({
+                  id: key,
+                  ...item
+                });
+              });
+            }
+            applyFiltersAndDisplaySales();
+          }, { onlyOnce: false });
+        }
+      }
+      window.applyFiltersAndDisplaySales = () => {
+        const container = document.getElementById("saleList");
+        container.innerHTML = "";
+        let currentTotalSales = 0;
+        const filterDateStartStr = document.getElementById("filterDateStart").value;
+        const filterDateEndStr = document.getElementById("filterDateEnd").value;
+        const filterPaymentType = document.getElementById("filterPaymentType").value;
+        const filterDateStart = filterDateStartStr ? new Date(filterDateStartStr + 'T00:00:00') : null;
+        const filterDateEnd = filterDateEndStr ? new Date(filterDateEndStr + 'T23:59:59') : null;
+        filteredSalesData = allSalesData.filter(sale => {
+          const saleDate = new Date(sale.dataVenda);
+          const matchesDate = (!filterDateStart || saleDate >= filterDateStart) && (!filterDateEnd || saleDate <= filterDateEnd);
+          const matchesPaymentType = (filterPaymentType === "Todos" || sale.tipoPagamento === filterPaymentType);
+          return matchesDate && matchesPaymentType;
+        });
+        if (filteredSalesData.length > 0) {
+          filteredSalesData.forEach(item => {
+            currentTotalSales += item.valorTotal;
+            const div = document.createElement("div");
+            const itemsList = item.items && item.items.length > 0 ?
+              item.items.map(i => {
+                const quantidadeDisplay = i.unidade === 'kilo' ?
+                  `${(i.quantidade * 1000).toFixed(0)}g` :
+                  `${i.quantidade} un`;
+                return `<li>${i.nome} (${quantidadeDisplay}, R$ ${i.preco.toFixed(2).replace('.', ',')})</li>`;
+              }).join('') : '';
+            div.innerHTML = `
+              <strong>Venda Nº:</strong> ${item.saleNumber || 'N/A'}<br>
+              <strong>Data/Hora:</strong> ${item.dataVenda ? new Date(item.dataVenda).toLocaleString('pt-BR') : 'N/A'}<br>
+              <strong>Valor Total:</strong> R$ ${item.valorTotal ? item.valorTotal.toFixed(2).replace('.', ',') : '0,00'}<br>
+              <strong>Tipo de Pagamento:</strong> ${item.tipoPagamento}<br>
+              <strong>Obs.:</strong> ${item.observacoes || 'N/A'}<br>
+              ${itemsList ? `<strong>Itens:</strong><ul>${itemsList}</ul>` : ''}
+              <button class="btn btn-outline" onclick="reimprimirVenda('${item.id}')">Reimprimir</button>
+              <button class="btn btn-outline" onclick="excluirVenda('${item.id}')">Excluir</button>
+            `;
+            container.appendChild(div);
+          });
+        } else {
+          container.innerHTML = "Nenhuma venda encontrada com os filtros aplicados.";
+        }
+        document.getElementById("totalSalesValue").textContent = `R$ ${currentTotalSales.toFixed(2).replace('.', ',')}`;
+      };
+      window.excluirVenda = async (id) => {
+        const confirmacao = confirm("Tem certeza que deseja excluir esta venda? Isso reverterá o estoque.");
+        if (!confirmacao) return;
+        const user = auth.currentUser;
+        if (user) {
+          const vendaRef = ref(db, `vendas/${user.uid}/${id}`);
+          const snapshot = await get(vendaRef);
+          if (snapshot.exists()) {
+            const sale = snapshot.val();
+            const updates = {};
+            sale.items.forEach(item => {
+              const productCode = item.codigo.startsWith('2') && item.codigo.length === 13 ? item.codigo.slice(1, 7) : item.codigo;
+              const currentStock = productsDatabase[productCode]?.estoque || 0;
+              const newStock = currentStock + item.quantidade;
+              updates[`produtos/${user.uid}/${productCode}/estoque`] = newStock;
+            });
+            await update(ref(db), updates);
+            await remove(vendaRef);
+            showToast('Venda excluída e estoque revertido!', 'success');
+            applyFiltersAndDisplaySales();
+          }
+        }
+      };
+      window.reimprimirVenda = async (id) => {
+        const user = auth.currentUser;
+        if (user) {
+          const vendaRef = ref(db, `vendas/${user.uid}/${id}`);
+          const snapshot = await get(vendaRef);
+          if (snapshot.exists()) {
+            const saleData = snapshot.val();
+            // Para reimprimir, precisamos simular o amountGiven, mas como não há, assumimos 0 ou o valor total se dinheiro
+            const amountGiven = saleData.pagamentos && saleData.pagamentos[saleData.pagamentos.length - 1]?.type === 'Dinheiro' ? saleData.pagamentos[saleData.pagamentos.length - 1].amount : 0;
+            printSaleReceipt(saleData, amountGiven);
+            showToast('Cupom reimpresso!', 'success');
+          } else {
+            showToast('Venda não encontrada.', 'error');
+          }
+        }
+      };
       onAuthStateChanged(auth, user => {
         console.log('Estado de autenticação:', user ? `Usuário logado: ${user.uid}` : 'Nenhum usuário logado');
         if (user) {
@@ -1910,6 +1977,7 @@
           mainContainer.classList.remove('hidden');
           loadProductsFromDatabase();
           loadCashData();
+          loadAllSalesAndFilter();
           updateTime();
           setTimeout(() => barcodeInputEl.focus(), 1000);
         } else {
@@ -1927,7 +1995,7 @@
         }
       });
       document.addEventListener('keydown', function(e) {
-        if (!cashOpened && ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8'].includes(e.key)) {
+        if (!cashOpened && ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9'].includes(e.key)) {
           e.preventDefault();
           showToast('Caixa não aberto. Abra o caixa para usar atalhos.', 'error');
           return;
@@ -1964,6 +2032,14 @@
           e.preventDefault();
           showSearchModal();
         }
+        if (e.key === 'F9') {
+          e.preventDefault();
+          if (salesSection.classList.contains('hidden')) {
+            showSalesSection();
+          } else {
+            hideSalesSection();
+          }
+        }
         if (e.key === 'ArrowUp') {
           e.preventDefault();
           selectedCartIndex = Math.max(0, selectedCartIndex - 1);
@@ -1997,6 +2073,8 @@
             hideSearchModal();
           } else if (!changeModal.classList.contains('hidden')) {
             closeChangeModal();
+          } else if (!salesSection.classList.contains('hidden')) {
+            hideSalesSection();
           }
         }
       });
@@ -2016,6 +2094,7 @@
           paymentFormEl.classList.contains('hidden') &&
           searchModal.classList.contains('hidden') &&
           changeModal.classList.contains('hidden') &&
+          salesSection.classList.contains('hidden') &&
           auth.currentUser) {
           barcodeInputEl.focus();
         }
